@@ -132,9 +132,21 @@ body{
   background:#fff;
   font-size:14px;
   color:#222;
-  outline:none;
-  transition:border-color 0.2s;
 }
+
+/* Split row (expiry + cvv) - prevent overflow on narrow screens */
+.split-row{display:flex;gap:12px;flex-wrap:wrap}
+.split-row .small{flex:1;min-width:0}
+.split-row .small input{width:100%;box-sizing:border-box}
+
+/* Touch highlight & active styles - remove blue flash on mobile, keep accessible focus */
+label, button, a, input, .method, .btn{ -webkit-tap-highlight-color: transparent; -webkit-touch-callout:none; -webkit-user-select:none; user-select:none; touch-action:manipulation; }
+.method:active{ background:#eaeaea }
+.btn:active{ opacity:0.95 }
+.method:hover{ background:#f0f0f0 }
+.method:focus-visible{ outline:3px solid rgba(253,34,155,0.12); outline-offset:2px }
+.payment-form input:focus{ outline:none; box-shadow:0 6px 22px rgba(52,232,158,0.10) }
+
 .payment-form input[type="text"]:focus,
 .payment-form input[type="password"]:focus,
 .payment-form input[type="email"]:focus,
