@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Payment</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="page">
+    <div class="steps" aria-hidden="true">
+      <div class="step completed" title="Shipping">
+        <div class="step-icon">
+          <!-- location icon -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="white"/></svg>
+        </div>
+      </div>
+
+      <div class="step-line"></div>
+
+      <div class="step active" title="Payment">
+        <div class="step-icon">
+          <!-- card icon -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2" fill="white"/></svg>
+        </div>
+      </div>
+
+      <div class="step-line short"></div>
+
+      <div class="step" title="Finish">
+        <div class="step-icon">
+          <!-- check icon -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <section class="payment-card" aria-labelledby="payment-title">
+      <h1 id="payment-title">PAYMENT</h1>
+      <p class="hint">Select your preferred payment method and complete your order.</p>
+
+      <form class="payment-form" novalidate>
+        <fieldset class="methods" aria-label="Payment method">
+          <legend class="sr-only">Payment method</legend>
+
+          <label class="method">
+            <input type="radio" name="method" value="card" checked />
+            <span class="method-ui"></span>
+            Credit / Debit Card
+          </label>
+
+          <label class="method">
+            <input type="radio" name="method" value="paypal" />
+            <span class="method-ui"></span>
+            PayPal
+          </label>
+
+          <label class="method">
+            <input type="radio" name="method" value="bank" />
+            <span class="method-ui"></span>
+            Bank Transfer
+          </label>
+        </fieldset>
+
+        <div class="form-row">
+          <label for="cardname">Cardholder Name</label>
+          <input id="cardname" name="cardname" type="text" placeholder="Alex Taylor" required />
+        </div>
+
+        <div class="form-row">
+          <label for="cardnum">Card Number</label>
+          <input id="cardnum" name="cardnum" type="text" inputmode="numeric" placeholder="•••• •••• •••• ••••" autocomplete="cc-number" required />
+        </div>
+
+        <div class="split-row">
+          <div class="form-row small">
+            <label for="expiry">Expiry Date</label>
+            <input id="expiry" name="expiry" type="text" inputmode="numeric" placeholder="MM/YY" autocomplete="cc-exp" required />
+          </div>
+
+          <div class="form-row small">
+            <label for="cvv">CVV</label>
+            <input id="cvv" name="cvv" type="password" inputmode="numeric" placeholder="123" maxlength="4" autocomplete="cc-csc" required />
+          </div>
+        </div>
+
+        <label class="checkbox">
+          <input type="checkbox" name="sameBilling" />
+          Use same billing address for payment
+        </label>
+
+        <div class="actions">
+          <button type="button" class="btn back">
+            <span class="arrow">←</span>
+            <span class="back-text">BACK TO BILLING</span>
+          </button>
+
+          <button type="submit" class="btn primary">
+            COMPLETE PURCHASE
+          </button>
+        </div>
+
+        <p class="secure-note" aria-hidden="false">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 2L4 5v6c0 5.55 3.84 10.74 8 12 4.16-1.26 8-6.45 8-12V5l-8-3z" fill="#666"/>
+            <path d="M9 12l2 2 4-4" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Your payment information is encrypted and secure.
+        </p>
+      </form>
+    </section>
+
+    <!-- Confirmation Page -->
+    <section class="confirmation-page" id="confirmation-page" style="display:none;">
+      <div class="confirmation-background">
+        <div class="dots-decoration"></div>
+        <img src="Vector.png" alt="" class="ribbon-decoration ribbon-1" />
+        <img src="Vector (2).png" alt="" class="ribbon-decoration ribbon-2" />
+        <img src="Vector (1).png" alt="" class="ribbon-decoration ribbon-3" />
+        <img src="Group.png" alt="" class="ribbon-decoration ribbon-4" />
+      </div>
+      
+      <div class="confirmation-content-wrapper">
+        <div class="confirmation-content">
+          <img src="Vector.png" alt="" class="ribbon-inside ribbon-pink" />
+          <img src="Vector (1).png" alt="" class="ribbon-inside ribbon-green" />
+          
+          <div class="illustration-container">
+            <img src="2 1.png" alt="Thank you illustration" class="confirmation-illustration" />
+          </div>
+          
+          <h1 class="thank-you-message">THANK! YOUR ORDER IS ON THE WAY.</h1>
+          
+          <button class="btn track-order" id="track-order-btn">
+            TRACK YOUR ORDER
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.querySelector('.payment-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.querySelector('.payment-card').style.display = 'none';
+      document.getElementById('confirmation-page').style.display = 'block';
+      document.body.style.background = '#ffffff';
+    });
+  </script>
+</body>
+</html>
